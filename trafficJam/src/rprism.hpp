@@ -14,15 +14,15 @@ class rprism:public Shape{
 protected:
 	GLfloat vertex[8][3];
 	GLint face[6][4];
-	GLint length; //length of vehicle in units
-	GLuint textureID; //red car is unique
-	GLint direction; // Horizontal =0 ;
+	GLint length; // Length of vehicle in units
+	GLuint textureID; // Red car is unique
+	GLint direction; // Horizontal = 0 ;
 
 public:
 	rprism(GLint len,GLint dir);
 	~rprism();
-	GLint getLenght();
-	void setLenght(GLint len);
+	GLint getLength();
+	void setLength(GLint len);
 	void setTexture(GLuint text);
 	GLint getDirection();
 	void setDirection(GLint direct);

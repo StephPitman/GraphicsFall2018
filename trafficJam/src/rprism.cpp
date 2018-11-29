@@ -29,10 +29,10 @@ rprism::rprism(GLint len, GLint dir){
 rprism::~rprism(){
 
 }
-GLint rprism::getLenght(){
+GLint rprism::getLength(){
 
 }
-void rprism::setLenght(GLint len){
+void rprism::setLength(GLint len){
 
 }
 void rprism::setTexture(GLuint text){

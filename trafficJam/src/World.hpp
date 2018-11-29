@@ -3,10 +3,10 @@
  */
 #ifndef CWORLD_HPP
 #define CWORLD_HPP
-#include "board.hpp"
 #include <iostream>
 #include <list>
 #include <vector>
+#include "Board.hpp"
 
 class World {
 

@@ -13,12 +13,13 @@
 #include <iostream>
 #include <math.h>
 
-class level{
+class Level{
 protected:
-	GLint boardMatrix[6][6];
+	GLint levelMatrix[6][6];
 public:
-	level();
-	~level();
+	Level();
+	Level(GLint lvl[6][6]);
+	~Level();
 };
 
 

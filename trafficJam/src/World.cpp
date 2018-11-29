@@ -1,6 +1,7 @@
 
 #include "World.hpp"
-#include "board.hpp"
+
+#include "Board.hpp"
 
 extern GLint selected;
 
@@ -8,7 +9,7 @@ extern GLint isAll;
 
 World::World() {
 	counter = 1;
-	list[0] = new board();
+	list[0] = new Board();
 
 	/*counter = 5;
 	list[0] = new Cube();

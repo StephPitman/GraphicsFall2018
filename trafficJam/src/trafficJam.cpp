@@ -10,17 +10,17 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "board.hpp"
+#include "Board.hpp"
 #include "menu.hpp"
-#include "level.hpp"
 #include "World.hpp"
 #include "Camera.hpp"
+#include "Level.hpp"
 using namespace std;
 
 //Global Variables
 GLint winWidth = 700;GLint winHeight = 700;
-board myBoard;
-level curLevel;
+Board myBoard;
+Level curLevel;
 GLint numMoves;
 
 World myWorld;
@@ -40,12 +40,12 @@ void init(){
 
 void display(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	Shape *p = NULL;
-	p = &myBoard;
+	Shape *ptrBoard = NULL;
+	ptrBoard = &myBoard;
 
 
 
-	p->draw();
+	ptrBoard->draw();
 	/*rx = p->getMC().mat[0][1];
 	ry = p->getMC().mat[1][1];
 	rz = p->getMC().mat[2][1];
@@ -67,22 +67,18 @@ int main(int argc, char** argv) {
 	menu();
 	init(); //MAY NOT NEED THIS
 
-	Shape *p = NULL;
-	p = &myBoard;
+	Shape *ptrBoard = NULL;
+	ptrBoard = &myBoard;
 	GLfloat rx,ry,rz;
-	rx = p->getMC().mat[0][1];
-	ry = p->getMC().mat[1][1];
-	rz = p->getMC().mat[2][1];
-	p->rotateMC(rx, ry, rz, 53 * 0.5);
+	rx = ptrBoard->getMC().mat[0][1];
+	ry = ptrBoard->getMC().mat[1][1];
+	rz = ptrBoard->getMC().mat[2][1];
+	ptrBoard->rotateMC(rx, ry, rz, 53 * 0.5);
 
-
-
-	rx = p->getMC().mat[0][0];
-	ry = p->getMC().mat[1][0];
-	rz = p->getMC().mat[2][0];
-	p->rotateMC(rx, ry, rz, 130 * 0.5);
-
-
+	rx = ptrBoard->getMC().mat[0][0];
+	ry = ptrBoard->getMC().mat[1][0];
+	rz = ptrBoard->getMC().mat[2][0];
+	ptrBoard->rotateMC(rx, ry, rz, 130 * 0.5);
 
 	glutDisplayFunc(display);
 	/*glutMotionFunc(mouseMotion);

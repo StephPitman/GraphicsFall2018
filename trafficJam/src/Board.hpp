@@ -10,17 +10,16 @@
 
 #include "Shape.hpp"
 
-class board:public Shape{
+class Board:public Shape{
 protected:
-	GLfloat vertex[16][3];
-	GLint face[13][4];
+	GLfloat vertex[36][3]; // [vertex index][x,y,z]
+	GLint face[36][4]; // [face index][v1,v2,v3,v4]
 	GLint matrix[8][8];
 public:
-	board();
-	~board();
+	Board();
+	~Board();
 	void setMatrix(GLint mat[8][8]);
-	GLint* getMatrix();
-	void drawFace(GLint f);
+	void drawFace(GLint f, GLint l); // l is to draw an outline
 	void draw();
 };
 
