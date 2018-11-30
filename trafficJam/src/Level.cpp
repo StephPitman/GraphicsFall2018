@@ -7,10 +7,6 @@
 
 #include "Level.hpp"
 
-Level::Level() {
-
-}
-
 Level::Level(GLint lvl[6][6]) {
 	for (int i = 0; i < 6; i++) {
 		for (int j = 0; j < 6; j++) {
@@ -18,7 +14,15 @@ Level::Level(GLint lvl[6][6]) {
 		}
 	}
 }
+
 Level::~Level() {
 
 }
 
+void Level::setLevel(GLint lvl[6][6]) {
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 6; j++) {
+			levelMatrix[i][j] = lvl[i][j];
+		}
+	}
+}

@@ -15,12 +15,17 @@
 #include "World.hpp"
 #include "Camera.hpp"
 #include "Level.hpp"
+#include "Vehicle.hpp"
 using namespace std;
+
+const GLint MAX_VEHICLES = 13;
 
 //Global Variables
 GLint winWidth = 700;GLint winHeight = 700;
 Board myBoard;
-Level curLevel;
+Level myLevel;
+Vehicle myVehicles[MAX_VEHICLES];
+GLint numVehicles = 0;
 GLint numMoves;
 
 World myWorld;

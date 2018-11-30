@@ -17,9 +17,9 @@ class Level{
 protected:
 	GLint levelMatrix[6][6];
 public:
-	Level();
 	Level(GLint lvl[6][6]);
 	~Level();
+	void setLevel(GLint lvl[6][6]);
 };
 
 

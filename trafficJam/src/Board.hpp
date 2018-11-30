@@ -8,6 +8,7 @@
 #ifndef BOARD_HPP_
 #define BOARD_HPP_
 
+#include <GL/glut.h>
 #include "Shape.hpp"
 
 class Board:public Shape{
@@ -18,7 +19,7 @@ protected:
 public:
 	Board();
 	~Board();
-	void setMatrix(GLint mat[8][8]);
+	void setLevel(GLint mat[6][6]);
 	void drawFace(GLint f, GLint l); // l is to draw an outline
 	void draw();
 };

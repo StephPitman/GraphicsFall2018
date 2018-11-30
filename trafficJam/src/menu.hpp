@@ -12,6 +12,9 @@
 #include <stdlib.h>
 #include <iostream>
 #include <math.h>
+#include "Board.hpp"
+#include "Level.hpp"
+#include "Vehicle.hpp"
 
 void menu();
 void levelSelect(GLint option);

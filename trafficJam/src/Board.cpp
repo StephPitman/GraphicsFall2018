@@ -146,10 +146,10 @@ Board::~Board(){
 
 }
 
-void Board::setMatrix(GLint mat[8][8]){
-	for(int i = 0; i < 8; i++){
-		for(int j = 0; j < 8; j++){
-			matrix[i][j] = mat[i][j];
+void Board::setLevel(GLint mat[6][6]){
+	for(int i = 1; i < 7; i++){
+		for(int j = 1; j < 7; j++){
+			matrix[i][j] = mat[i-1][j-1];
 		}
 	}
 }
