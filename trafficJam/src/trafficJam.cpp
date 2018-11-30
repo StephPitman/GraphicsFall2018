@@ -11,20 +11,18 @@
 #include <math.h>
 
 #include "Board.hpp"
-#include "menu.hpp"
 #include "World.hpp"
 #include "Camera.hpp"
 #include "Level.hpp"
+#include "Menu.hpp"
 #include "Vehicle.hpp"
 using namespace std;
-
-const GLint MAX_VEHICLES = 13;
 
 //Global Variables
 GLint winWidth = 700;GLint winHeight = 700;
 Board myBoard;
 Level myLevel;
-Vehicle myVehicles[MAX_VEHICLES];
+Vehicle myVehicles[13];
 GLint numVehicles = 0;
 GLint numMoves;
 

@@ -12,6 +12,8 @@ protected:
 
 public:
 	Vehicle(GLint size, GLint id);
+	Vehicle();
+	~Vehicle();
 	void draw();
 	void drawMC();
 

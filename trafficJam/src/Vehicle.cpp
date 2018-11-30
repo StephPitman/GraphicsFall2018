@@ -2,6 +2,13 @@
 
 extern Vehicle myVehicles[];
 
+Vehicle::Vehicle(){
+
+}
+Vehicle::~Vehicle(){
+
+}
+
 Vehicle::Vehicle(GLint size, GLint id) {
 	vertex[0][0] = 0; vertex[0][1] = 0; vertex[0][2] = 0; // Back left bottom
 	vertex[1][0] = 0; vertex[1][1] = 1; vertex[1][2] = 0; // Back left top

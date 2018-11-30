@@ -5,13 +5,11 @@
  *      Author: Stephanie
  */
 
-#include "menu.hpp"
-
-extern GLint MAX_VEHICLES;
+#include "Menu.hpp"
 
 extern Board myBoard;
 extern Level myLevel;
-extern Vehicle myVehicles[MAX_VEHICLES];
+extern Vehicle myVehicles[13];
 extern GLint numVehicles;
 
 void menu() {
@@ -28,7 +26,7 @@ void menu() {
 void levelSelect(GLint option) {
 	GLint lvl[6][6];
 	for(int i = 0; i < numVehicles; i++){
-		delete(myVehicles[i]);
+		delete myVehicles[i];
 	}
 	switch (option) {
 	//http://www.puzzles.com/products/rushhour/rhfrommarkriedel/Jam.html?1
