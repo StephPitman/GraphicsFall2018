@@ -2,23 +2,33 @@
 
 extern Vehicle myVehicles[];
 
-Vehicle::Vehicle(){
-
-}
 Vehicle::~Vehicle(){
 
 }
 
-Vehicle::Vehicle(GLint size, GLint id) {
-	vertex[0][0] = 0; vertex[0][1] = 0; vertex[0][2] = 0; // Back left bottom
-	vertex[1][0] = 0; vertex[1][1] = 1; vertex[1][2] = 0; // Back left top
-	vertex[2][0] = 1; vertex[2][1] = 1; vertex[2][2] = 0; // Back right top
-	vertex[3][0] = 1; vertex[3][1] = 0; vertex[3][2] = 0; // Back right bottom
+Vehicle::Vehicle(GLint size, GLint id, GLint dir) {
+	if(dir){	// Vertical
+		vertex[0][0] = 0; vertex[0][1] = 0; vertex[0][2] = 0; // Back left bottom
+		vertex[1][0] = 0; vertex[1][1] = 1; vertex[1][2] = 0; // Back left top
+		vertex[2][0] = 1; vertex[2][1] = 1; vertex[2][2] = 0; // Back right top
+		vertex[3][0] = 1; vertex[3][1] = 0; vertex[3][2] = 0; // Back right bottom
 
-	vertex[4][0] = 0; vertex[4][1] = 0; vertex[4][2] = size; // Front left bottom
-	vertex[5][0] = 0; vertex[5][1] = 1; vertex[5][2] = size; // Front left top
-	vertex[6][0] = 1; vertex[6][1] = 1; vertex[6][2] = size; // Front right top
-	vertex[7][0] = 1; vertex[7][1] = 0; vertex[7][2] = size; // Front right bottom
+		vertex[4][0] = 0; vertex[4][1] = 0; vertex[4][2] = size; // Front left bottom
+		vertex[5][0] = 0; vertex[5][1] = 1; vertex[5][2] = size; // Front left top
+		vertex[6][0] = 1; vertex[6][1] = 1; vertex[6][2] = size; // Front right top
+		vertex[7][0] = 1; vertex[7][1] = 0; vertex[7][2] = size; // Front right bottom
+	}
+	else{	// Horizontal
+		vertex[0][0] = 0; vertex[0][1] = 0; vertex[0][2] = 0; // Back left bottom
+		vertex[1][0] = 0; vertex[1][1] = 1; vertex[1][2] = 0; // Back left top
+		vertex[2][0] = size; vertex[2][1] = 1; vertex[2][2] = 0; // Back right top
+		vertex[3][0] = size; vertex[3][1] = 0; vertex[3][2] = 0; // Back right bottom
+
+		vertex[4][0] = 0; vertex[4][1] = 0; vertex[4][2] = 1; // Front left bottom
+		vertex[5][0] = 0; vertex[5][1] = 1; vertex[5][2] = 1; // Front left top
+		vertex[6][0] = size; vertex[6][1] = 1; vertex[6][2] = 1; // Front right top
+		vertex[7][0] = size; vertex[7][1] = 0; vertex[7][2] = 1; // Front right bottom
+	}
 
 	face[0][0] = 1; face[0][1] = 2; face[0][2] = 6; face[0][3] = 5; // Top
 	face[1][0] = 0; face[1][1] = 3; face[1][2] = 7; face[1][3] = 4; // Bottom
@@ -94,6 +104,7 @@ Vehicle::Vehicle(GLint size, GLint id) {
 		b = 0.5;
 		break;
 	}
+	direction = dir;
 }
 
 void Vehicle::draw_face(int i) {

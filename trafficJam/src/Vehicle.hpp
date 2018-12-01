@@ -9,10 +9,11 @@ protected:
 	GLfloat vertex[8][3];	//[v]->[x][y][z]
 	GLint face[6][4];		//[face][vertex index]
 	GLfloat r, g, b;
+	GLint direction;	// Horizontal = 0, Vertical = 0
 
 public:
-	Vehicle(GLint size, GLint id);
-	Vehicle();
+	Vehicle(GLint size, GLint id, GLint dir);
+	Vehicle() = delete;
 	~Vehicle();
 	void draw();
 	void drawMC();

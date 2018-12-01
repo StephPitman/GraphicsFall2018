@@ -13,7 +13,6 @@
 #include "Board.hpp"
 #include "World.hpp"
 #include "Camera.hpp"
-#include "Level.hpp"
 #include "Menu.hpp"
 #include "Vehicle.hpp"
 using namespace std;
@@ -21,8 +20,8 @@ using namespace std;
 //Global Variables
 GLint winWidth = 700;GLint winHeight = 700;
 Board myBoard;
-Level myLevel;
-Vehicle myVehicles[13];
+GLint *myLevel;
+Vehicle* myVehicles[13];
 GLint numVehicles = 0;
 GLint numMoves;
 

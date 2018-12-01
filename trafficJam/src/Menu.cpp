@@ -8,8 +8,8 @@
 #include "Menu.hpp"
 
 extern Board myBoard;
-extern Level myLevel;
-extern Vehicle myVehicles[13];
+extern GLint* myLevel;
+extern Vehicle* myVehicles[13];
 extern GLint numVehicles;
 
 void menu() {
@@ -24,7 +24,6 @@ void menu() {
 
 }
 void levelSelect(GLint option) {
-	GLint lvl[6][6];
 	for(int i = 0; i < numVehicles; i++){
 		delete myVehicles[i];
 	}
@@ -32,22 +31,16 @@ void levelSelect(GLint option) {
 	//http://www.puzzles.com/products/rushhour/rhfrommarkriedel/Jam.html?1
 	case 1:
 		numVehicles = 8;
-		myVehicles[0] = new Vehicle(2, 2);
-		myVehicles[1] = new Vehicle(2, 3);
-		myVehicles[2] = new Vehicle(3, 4);
-		myVehicles[3] = new Vehicle(2, 5);
-		myVehicles[4] = new Vehicle(3, 6);
-		myVehicles[5] = new Vehicle(2, 7);
-		myVehicles[6] = new Vehicle(2, 8);
-		myVehicles[7] = new Vehicle(4, 9);
-		lvl = {
-			{	3,3,0,0,0,4},
-			{	5,0,0,6,0,4},
-			{	5,2,2,6,0,4},	// Exit row
-			{	5,0,0,6,0,0},
-			{	7,0,0,0,8,8},
-			{	7,0,9,9,9,9}};
-		myLevel.setLevel(lvl);
+		myVehicles[0] = new Vehicle(2, 2, 0);
+		myVehicles[1] = new Vehicle(2, 3, 0);
+		myVehicles[2] = new Vehicle(3, 4, 1);
+		myVehicles[3] = new Vehicle(2, 5, 1);
+		myVehicles[4] = new Vehicle(3, 6, 1);
+		myVehicles[5] = new Vehicle(2, 7, 1);
+		myVehicles[6] = new Vehicle(2, 8, 0);
+		myVehicles[7] = new Vehicle(4, 9, 0);
+		//myLevel = new int[6][6];
+		GLint lvl = {{3,3,0,0,0,4},{5,0,0,6,0,4},{5,2,2,6,0,4},{5,0,0,6,0,0},{7,0,0,0,8,8},{7,0,9,9,9,9}};
 		myBoard.setLevel(lvl);
 		break;
 		case 2:
