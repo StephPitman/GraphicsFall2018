@@ -11,6 +11,7 @@ extern Board myBoard;
 extern GLint* myLevel;
 extern Vehicle* myVehicles[13];
 extern GLint numVehicles;
+extern bool loaded[13];
 
 void menu() {
 	GLint levelMenu = glutCreateMenu(levelSelect);
@@ -26,6 +27,7 @@ void menu() {
 void levelSelect(GLint option) {
 	for(int i = 0; i < numVehicles; i++){
 		delete myVehicles[i];
+		loaded[i] = false;
 	}
 	GLint lvl[6][6];
 	switch (option) {

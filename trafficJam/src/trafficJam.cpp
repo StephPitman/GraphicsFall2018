@@ -24,6 +24,7 @@ GLint *myLevel;
 Vehicle* myVehicles[13];
 GLint numVehicles = 0;
 GLint numMoves;
+bool loaded[13];
 
 World myWorld;
 Camera myCamera;

@@ -10,6 +10,7 @@
 
 #include <GL/glut.h>
 #include "Shape.hpp"
+#include "Vehicle.hpp"
 
 class Board:public Shape{
 protected:
