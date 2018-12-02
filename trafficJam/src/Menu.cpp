@@ -8,7 +8,6 @@
 #include "Menu.hpp"
 
 extern Board myBoard;
-extern GLint* myLevel;
 extern Vehicle* myVehicles[13];
 extern GLint numVehicles;
 extern bool loaded[13];
@@ -34,6 +33,7 @@ void levelSelect(GLint option) {
 	//http://www.puzzles.com/products/rushhour/rhfrommarkriedel/Jam.html?1
 	case 1:
 		numVehicles = 8;
+		// Vehicle(size, ID, direction)
 		myVehicles[0] = new Vehicle(2, 2, 0);
 		myVehicles[1] = new Vehicle(2, 3, 0);
 		myVehicles[2] = new Vehicle(3, 4, 1);
@@ -42,6 +42,7 @@ void levelSelect(GLint option) {
 		myVehicles[5] = new Vehicle(2, 7, 1);
 		myVehicles[6] = new Vehicle(2, 8, 0);
 		myVehicles[7] = new Vehicle(4, 9, 0);
+		numVehicles = 8;
 		//GLint lvl[2][3] = {{4,5,6},{3,6,7}};
 		//myLevel = new int[6][6];
 		//This is temporary fix. If we find time later on to do this better we will change it

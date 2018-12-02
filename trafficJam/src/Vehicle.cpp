@@ -4,7 +4,7 @@ Vehicle::~Vehicle(){
 
 }
 
-Vehicle::Vehicle(GLint size, GLint id, GLint dir) {
+Vehicle::Vehicle(GLint size, GLint col, GLint dir) {
 	if(dir){	// Vertical
 		vertex[0][0] = 0; vertex[0][1] = 0; vertex[0][2] = 0; // Back left bottom
 		vertex[1][0] = 0; vertex[1][1] = 1; vertex[1][2] = 0; // Back left top
@@ -35,7 +35,7 @@ Vehicle::Vehicle(GLint size, GLint id, GLint dir) {
 	face[4][0] = 5; face[4][1] = 6; face[4][2] = 7; face[4][3] = 4; // Front
 	face[5][0] = 1; face[5][1] = 2; face[5][2] = 3; face[5][3] = 0; // Back
 
-	switch(id){
+	switch(col){
 	case 2:
 		r = 1.0;
 		g = 0.0;
@@ -102,7 +102,12 @@ Vehicle::Vehicle(GLint size, GLint id, GLint dir) {
 		b = 0.5;
 		break;
 	}
+	id = col;
 	direction = dir;
+}
+
+GLint Vehicle::getID(){
+	return id;
 }
 
 void Vehicle::draw_face(int i) {

@@ -9,7 +9,7 @@
 #define BOARD_HPP_
 
 #include <GL/glut.h>
-#include "Shape.hpp"
+#include <stdio.h>
 #include "Vehicle.hpp"
 
 class Board:public Shape{
