@@ -8,6 +8,7 @@
 #include "Menu.hpp"
 
 extern Board *myBoard;
+extern World myWorld;
 extern Vehicle* myVehicles[13];
 extern GLint numVehicles;
 extern bool loaded[13];
@@ -45,6 +46,7 @@ void menu() {
 void levelSelect(GLint option) {
 	for(int i = 0; i < numVehicles; i++){
 		delete myVehicles[i];
+		myWorld.counter--;
 		loaded[i] = false;
 	}
 	GLint lvl[6][6];
