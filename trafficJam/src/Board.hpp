@@ -11,6 +11,7 @@
 #include <GL/glut.h>
 #include <stdio.h>
 #include "Vehicle.hpp"
+#include "World.hpp"
 
 class Board:public Shape{
 protected:

@@ -8,7 +8,10 @@
 #include "Board.hpp"
 
 extern Vehicle* myVehicles[13];
+extern GLint numVehicles;
 extern bool loaded[13];
+
+extern World myWorld;
 
 Board::Board() {
 	int i, j;
@@ -21,6 +24,7 @@ Board::Board() {
 			}
 		}
 	}
+
 	matrix[3][7] = 0;	// Escape block
 
 	/*-------Base Plate-------*/
@@ -166,13 +170,13 @@ void Board::setLevel(GLint mat[6][6]) {
 				myVehicles[id - 2]->draw();
 				myVehicles[id - 2]->translate(i - 4, 0, j - 4);
 				loaded[id - 2] = true;
+				myWorld.insert(myVehicles[id-2]);
 			}
 		}
 	}
 }
 
 void Board::drawFace(GLint f, GLint l) {
-
 	if (f < 6) {
 		glColor3f(0.5, 0.5, 0.5);
 	} else {

@@ -7,7 +7,7 @@
 
 #include "Menu.hpp"
 
-extern Board myBoard;
+extern Board *myBoard;
 extern Vehicle* myVehicles[13];
 extern GLint numVehicles;
 extern bool loaded[13];
@@ -59,7 +59,7 @@ void levelSelect(GLint option) {
 		{5,0,0,6,0,0},
 		{7,0,0,0,8,8},
 		{7,0,9,9,9,9}};*/
-		myBoard.setLevel(lvl);
+		myBoard->setLevel(lvl);
 
 	break;
 	case 2:
@@ -86,7 +86,7 @@ void levelSelect(GLint option) {
 		 * 0 0 6 0 0 8
 		 * 0 0 9 9 9 8
 		 */
-		myBoard.setLevel(lvl);
+		myBoard->setLevel(lvl);
 	break;
 	case 3:
 		// 1 vert 0 horiz
@@ -115,7 +115,7 @@ void levelSelect(GLint option) {
 		 * 0 0 0 0 0 0
 		 * 0 0 0 8 8 8
 		 */
-		myBoard.setLevel(lvl);
+		myBoard->setLevel(lvl);
 	};
 	printf("here");
 	glutPostRedisplay();

@@ -19,7 +19,7 @@ using namespace std;
 
 //Global Variables
 GLint winWidth = 700;GLint winHeight = 700;
-Board myBoard;
+Board *myBoard;
 GLint *myLevel;
 Vehicle* myVehicles[13];
 GLint numVehicles = 0;
@@ -43,19 +43,16 @@ void init(){
 
 void display(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	Shape *ptrBoard = NULL;
-	ptrBoard = &myBoard;
+	myCamera.setProjectionMatrix();
 
+	myWorld.drawWorld();
 
-
-	ptrBoard->draw();
 	/*rx = p->getMC().mat[0][1];
 	ry = p->getMC().mat[1][1];
 	rz = p->getMC().mat[2][1];
 	p->rotateMC(rx, ry, rz, 100 * 0.5);
 	p->draw();*/
 	//std::cout << "HERE\n";
-	glutPostRedisplay();
 	glFlush();
 	glutSwapBuffers();
 	//getchar();
@@ -70,7 +67,10 @@ int main(int argc, char** argv) {
 	menu();
 	init(); //MAY NOT NEED THIS
 
-	Shape *ptrBoard = NULL;
+	myBoard = new Board();
+	myWorld.insert(myBoard);
+
+	/*Shape *ptrBoard = NULL;
 	ptrBoard = &myBoard;
 	GLfloat rx,ry,rz;
 	rx = ptrBoard->getMC().mat[0][1];
@@ -81,7 +81,7 @@ int main(int argc, char** argv) {
 	rx = ptrBoard->getMC().mat[0][0];
 	ry = ptrBoard->getMC().mat[1][0];
 	rz = ptrBoard->getMC().mat[2][0];
-	ptrBoard->rotateMC(rx, ry, rz, 130 * 0.5);
+	ptrBoard->rotateMC(rx, ry, rz, 130 * 0.5);*/
 
 	glutDisplayFunc(display);
 	/*glutMotionFunc(mouseMotion);
