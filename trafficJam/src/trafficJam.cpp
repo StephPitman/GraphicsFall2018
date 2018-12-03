@@ -93,7 +93,7 @@ void mouseMotion(GLint x, GLint y) {
 					|| (theta == -1 && (myBoard->getCell(bottomY + 1, bottomX) == 0))){
 				rx = 0;
 				ry = 0;
-				rz = theta;
+				rz = -theta;
 				sshapep->translate(rx, ry, rz);
 				myBoard->update(theta);
 			}

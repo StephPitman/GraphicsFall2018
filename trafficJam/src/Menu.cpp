@@ -56,11 +56,11 @@ void levelSelect(GLint option) {
 		myVehicles[0] = new Vehicle(2, 2, 0);
 		myVehicles[1] = new Vehicle(2, 3, 0);
 		myVehicles[2] = new Vehicle(3, 4, 1);
-		myVehicles[3] = new Vehicle(2, 5, 1);
+		myVehicles[3] = new Vehicle(3, 5, 1);
 		myVehicles[4] = new Vehicle(3, 6, 1);
 		myVehicles[5] = new Vehicle(2, 7, 1);
 		myVehicles[6] = new Vehicle(2, 8, 0);
-		myVehicles[7] = new Vehicle(4, 9, 0);
+		myVehicles[7] = new Vehicle(3, 9, 0);
 		numVehicles = 8;
 		//GLint lvl[2][3] = {{4,5,6},{3,6,7}};
 		//myLevel = new int[6][6];
@@ -70,14 +70,14 @@ void levelSelect(GLint option) {
 		lvl[2][0] = 5;lvl[2][1] = 2;lvl[2][2] = 2;lvl[2][3] = 6;lvl[2][4] = 0;lvl[2][5] = 4;
 		lvl[3][0] = 5;lvl[3][1] = 0;lvl[3][2] = 0;lvl[3][3] = 6;lvl[3][4] = 0;lvl[3][5] = 0;
 		lvl[4][0] = 7;lvl[4][1] = 0;lvl[4][2] = 0;lvl[4][3] = 0;lvl[4][4] = 8;lvl[4][5] = 8;
-		lvl[5][0] = 7;lvl[5][1] = 0;lvl[5][2] = 9;lvl[5][3] = 9;lvl[5][4] = 9;lvl[5][5] = 9;
+		lvl[5][0] = 7;lvl[5][1] = 0;lvl[5][2] = 9;lvl[5][3] = 9;lvl[5][4] = 9;lvl[5][5] = 0;
 		/*lvl = {
 		{3,3,0,0,0,4},
 		{5,0,0,6,0,4},
 		{5,2,2,6,0,4},
 		{5,0,0,6,0,0},
 		{7,0,0,0,8,8},
-		{7,0,9,9,9,9}};*/
+		{7,0,9,9,9,0}};*/
 		myBoard->setLevel(lvl);
 		break;
 	case 2:
