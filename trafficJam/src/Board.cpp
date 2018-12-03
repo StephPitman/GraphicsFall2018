@@ -12,6 +12,7 @@ extern GLint numVehicles;
 extern bool loaded[13];
 
 extern World myWorld;
+extern Camera myCamera;
 
 Board::Board() {
 	int i, j;
@@ -106,6 +107,13 @@ Board::Board() {
 	face[4][0] = 5;face[4][1] = 6;face[4][2] = 7;face[4][3] = 4; // Front
 	face[5][0] = 1;face[5][1] = 2;face[5][2] = 3;face[5][3] = 0; // Back
 
+	cube_face_norm_mc[0][0] = 0.0,cube_face_norm_mc[0][1] = 1.0,cube_face_norm_mc[0][2] = 0.0,
+	cube_face_norm_mc[1][0] = 0.0, cube_face_norm_mc[1][1] = -1.0, cube_face_norm_mc[1][2] = 0.0;
+	cube_face_norm_mc[2][0] = 1.0, cube_face_norm_mc[2][1] = 0.0, cube_face_norm_mc[2][2] = 0.0;
+	cube_face_norm_mc[3][0] = -1.0, cube_face_norm_mc[3][1] = 0.0, cube_face_norm_mc[3][2] = 0.0;
+	cube_face_norm_mc[4][0] = 0.0, cube_face_norm_mc[4][1] = 0.0, cube_face_norm_mc[4][2] = 1.0;
+	cube_face_norm_mc[5][0] = 0.0, cube_face_norm_mc[5][1] = 0.0, cube_face_norm_mc[5][2] = -1.0;
+
 	/*-------Top Wall-------*/
 	face[6][0] = 8;face[6][1] = 9;face[6][2] = 12;face[6][3] = 11; // Top
 	face[7][0] = 1;face[7][1] = 2;face[7][2] = 13;face[7][3] = 10; // Bottom
@@ -113,6 +121,13 @@ Board::Board() {
 	face[9][0] = 8;face[9][1] = 11;face[9][2] = 10;face[9][3] = 1; // Left
 	face[10][0] = 11;face[10][1] = 12;face[10][2] = 13;face[10][3] = 10; // Front
 	face[11][0] = 8;face[11][1] = 9;face[11][2] = 2;face[11][3] = 1; // Back
+
+	cube_face_norm_mc[6][0] = 0.0,cube_face_norm_mc[6][1] = 1.0,cube_face_norm_mc[6][2] = 0.0,
+	cube_face_norm_mc[7][0] = 0.0, cube_face_norm_mc[7][1] = -1.0, cube_face_norm_mc[7][2] = 0.0;
+	cube_face_norm_mc[8][0] = 1.0, cube_face_norm_mc[8][1] = 0.0, cube_face_norm_mc[8][2] = 0.0;
+	cube_face_norm_mc[9][0] = -1.0, cube_face_norm_mc[9][1] = 0.0, cube_face_norm_mc[9][2] = 0.0;
+	cube_face_norm_mc[10][0] = 0.0, cube_face_norm_mc[10][1] = 0.0, cube_face_norm_mc[10][2] = 1.0;
+	cube_face_norm_mc[11][0] = 0.0, cube_face_norm_mc[11][1] = 0.0, cube_face_norm_mc[11][2] = -1.0;
 
 	/*-------Bottom Wall-------*/
 	face[12][0] = 15;face[12][1] = 16;face[12][2] = 19;face[12][3] = 18; // Top
@@ -122,6 +137,13 @@ Board::Board() {
 	face[16][0] = 18;face[16][1] = 19;face[16][2] = 6;face[16][3] = 5; // Front
 	face[17][0] = 15;face[17][1] = 16;face[17][2] = 17;face[17][3] = 14; // Back
 
+	cube_face_norm_mc[12][0] = 0.0,		cube_face_norm_mc[12][0] = 1.0,		cube_face_norm_mc[12][0] = 0.0,
+	cube_face_norm_mc[13][0] = 0.0, 	cube_face_norm_mc[13][0] = -1.0, 	cube_face_norm_mc[13][0] = 0.0;
+	cube_face_norm_mc[14][0] = 1.0, 	cube_face_norm_mc[14][0] = 0.0, 	cube_face_norm_mc[14][0] = 0.0;
+	cube_face_norm_mc[15][0] = -1.0, 	cube_face_norm_mc[15][0] = 0.0, 	cube_face_norm_mc[15][0] = 0.0;
+	cube_face_norm_mc[16][0] = 0.0, 	cube_face_norm_mc[16][0] = 0.0, 	cube_face_norm_mc[16][0] = 1.0;
+	cube_face_norm_mc[17][0] = 0.0, 	cube_face_norm_mc[17][0] = 0.0, 	cube_face_norm_mc[17][0] = -1.0;
+
 	/*-------Left Wall-------*/
 	face[18][0] = 11;face[18][1] = 20;face[18][2] = 22;face[18][3] = 15; // Top
 	face[19][0] = 10;face[19][1] = 21;face[19][2] = 23;face[19][3] = 14; // Bottom
@@ -129,6 +151,13 @@ Board::Board() {
 	face[21][0] = 11;face[21][1] = 15;face[21][2] = 14;face[21][3] = 10; // Left
 	face[22][0] = 15;face[22][1] = 22;face[22][2] = 23;face[22][3] = 14; // Front
 	face[23][0] = 11;face[23][1] = 20;face[23][2] = 21;face[23][3] = 10; // Back
+
+	cube_face_norm_mc[18][0] = 0.0,		cube_face_norm_mc[18][0] = 1.0,		cube_face_norm_mc[18][0] = 0.0,
+	cube_face_norm_mc[19][0] = 0.0, 	cube_face_norm_mc[19][0] = -1.0, 	cube_face_norm_mc[19][0] = 0.0;
+	cube_face_norm_mc[20][0] = 1.0, 	cube_face_norm_mc[20][0] = 0.0, 	cube_face_norm_mc[20][0] = 0.0;
+	cube_face_norm_mc[21][0] = -1.0, 	cube_face_norm_mc[21][0] = 0.0, 	cube_face_norm_mc[21][0] = 0.0;
+	cube_face_norm_mc[22][0] = 0.0, 	cube_face_norm_mc[22][0] = 0.0, 	cube_face_norm_mc[22][0] = 1.0;
+	cube_face_norm_mc[23][0] = 0.0, 	cube_face_norm_mc[23][0] = 0.0, 	cube_face_norm_mc[23][0] = -1.0;
 
 	/*-------Right Top Wall-------*/
 	face[24][0] = 25;face[24][1] = 12;face[24][2] = 28;face[24][3] = 27; // Top
@@ -138,6 +167,13 @@ Board::Board() {
 	face[28][0] = 27;face[28][1] = 28;face[28][2] = 29;face[28][3] = 26; // Front
 	face[29][0] = 25;face[29][1] = 12;face[29][2] = 13;face[29][3] = 24; // Back
 
+	cube_face_norm_mc[24][0] = 0.0,		cube_face_norm_mc[24][0] = 1.0,		cube_face_norm_mc[24][0] = 0.0,
+	cube_face_norm_mc[25][0] = 0.0, 	cube_face_norm_mc[25][0] = -1.0, 	cube_face_norm_mc[25][0] = 0.0;
+	cube_face_norm_mc[26][0] = 1.0, 	cube_face_norm_mc[26][0] = 0.0, 	cube_face_norm_mc[26][0] = 0.0;
+	cube_face_norm_mc[27][0] = -1.0, 	cube_face_norm_mc[27][0] = 0.0, 	cube_face_norm_mc[27][0] = 0.0;
+	cube_face_norm_mc[28][0] = 0.0, 	cube_face_norm_mc[28][0] = 0.0, 	cube_face_norm_mc[28][0] = 1.0;
+	cube_face_norm_mc[29][0] = 0.0, 	cube_face_norm_mc[29][0] = 0.0, 	cube_face_norm_mc[29][0] = -1.0;
+
 	/*-------Right Bottom Wall-------*/
 	face[30][0] = 31;face[30][1] = 32;face[30][2] = 16;face[30][3] = 35; // Top
 	face[31][0] = 30;face[31][1] = 33;face[31][2] = 17;face[31][3] = 34; // Bottom
@@ -146,10 +182,27 @@ Board::Board() {
 	face[34][0] = 35;face[34][1] = 16;face[34][2] = 17;face[34][3] = 34; // Front
 	face[35][0] = 31;face[35][1] = 32;face[35][2] = 33;face[35][3] = 30; // Back
 
+	cube_face_norm_mc[30][0] = 0.0,		cube_face_norm_mc[30][0] = 1.0,		cube_face_norm_mc[30][0] = 0.0,
+	cube_face_norm_mc[31][0] = 0.0, 	cube_face_norm_mc[31][0] = -1.0, 	cube_face_norm_mc[31][0] = 0.0;
+	cube_face_norm_mc[32][0] = 1.0, 	cube_face_norm_mc[32][0] = 0.0, 	cube_face_norm_mc[32][0] = 0.0;
+	cube_face_norm_mc[33][0] = -1.0, 	cube_face_norm_mc[33][0] = 0.0, 	cube_face_norm_mc[33][0] = 0.0;
+	cube_face_norm_mc[34][0] = 0.0, 	cube_face_norm_mc[34][0] = 0.0, 	cube_face_norm_mc[34][0] = 1.0;
+	cube_face_norm_mc[35][0] = 0.0, 	cube_face_norm_mc[35][0] = 0.0, 	cube_face_norm_mc[35][0] = -1.0;
 }
 
 Board::~Board() {
 
+}
+
+bool Board::isBackface(int faceindex) {
+	GLfloat v[4];
+    v[0] = cube_face_norm_mc[faceindex][0];
+    v[1] = cube_face_norm_mc[faceindex][1];
+    v[2] = cube_face_norm_mc[faceindex][2];
+    v[3] = 0.0;
+    this->mc.multiplyVector(v);
+
+    return (myCamera.ref.x-myCamera.eye.x)*v[0] + (myCamera.ref.y - myCamera.eye.y)*v[1] + (myCamera.ref.z - myCamera.eye.z)*v[2] > 0;
 }
 
 void Board::setLevel(GLint mat[6][6]) {
@@ -208,10 +261,12 @@ void Board::draw() {
 	int i;
 
 	for (i = 0; i < 36; i++) {
-		if (i != 0 && (i % 6 == 0 || i == 10 || i == 17 || i == 20 || i == 27 || i == 28 || i == 33 || i == 37)) {
-			drawFace(i, 1);
-		} else {
-			drawFace(i, 0);
+		if(!isBackface(i)){
+			if (i != 0 && (i % 6 == 0 || i == 10 || i == 17 || i == 20 || i == 27 || i == 28 || i == 33 || i == 37)) {
+				drawFace(i, 1);
+			} else {
+				drawFace(i, 0);
+			}
 		}
 	}
 

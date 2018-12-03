@@ -17,6 +17,7 @@
 
 void menu();
 void levelSelect(GLint option);
+void colorSelect(GLint option);
 void mainMenu(GLint option);
 
 

@@ -1,5 +1,7 @@
 #include "Vehicle.hpp"
 
+extern Camera myCamera;
+
 Vehicle::~Vehicle(){
 
 }
@@ -34,6 +36,13 @@ Vehicle::Vehicle(GLint size, GLint col, GLint dir) {
 	face[3][0] = 1; face[3][1] = 5; face[3][2] = 4; face[3][3] = 0; // Left
 	face[4][0] = 5; face[4][1] = 6; face[4][2] = 7; face[4][3] = 4; // Front
 	face[5][0] = 1; face[5][1] = 2; face[5][2] = 3; face[5][3] = 0; // Back
+
+	cube_face_norm_mc[0][0] = 0.0,cube_face_norm_mc[0][1] = 1.0,cube_face_norm_mc[0][2] = 0.0,
+	cube_face_norm_mc[1][0] = 0.0, cube_face_norm_mc[1][1] = -1.0, cube_face_norm_mc[1][2] = 0.0;
+	cube_face_norm_mc[2][0] = 1.0, cube_face_norm_mc[2][1] = 0.0, cube_face_norm_mc[2][2] = 0.0;
+	cube_face_norm_mc[3][0] = -1.0, cube_face_norm_mc[3][1] = 0.0, cube_face_norm_mc[3][2] = 0.0;
+	cube_face_norm_mc[4][0] = 0.0, cube_face_norm_mc[4][1] = 0.0, cube_face_norm_mc[4][2] = 1.0;
+	cube_face_norm_mc[5][0] = 0.0, cube_face_norm_mc[5][1] = 0.0, cube_face_norm_mc[5][2] = -1.0;
 
 	switch(col){
 	case 2:
@@ -97,8 +106,8 @@ Vehicle::Vehicle(GLint size, GLint col, GLint dir) {
 		b = 0.3;
 		break;
 	case 14:
-		r = 0.9;
-		g = 0.9;
+		r = 0.7;
+		g = 0.7;
 		b = 0.5;
 		break;
 	}
@@ -110,20 +119,48 @@ GLint Vehicle::getID(){
 	return id;
 }
 
-void Vehicle::draw_face(int i) {
+bool Vehicle::isBackface(int faceindex) {
+	GLfloat v[4];
+    v[0] = cube_face_norm_mc[faceindex][0];
+    v[1] = cube_face_norm_mc[faceindex][1];
+    v[2] = cube_face_norm_mc[faceindex][2];
+    v[3] = 0.0;
+    this->mc.multiplyVector(v);
+
+    return (myCamera.ref.x-myCamera.eye.x)*v[0] + (myCamera.ref.y - myCamera.eye.y)*v[1] + (myCamera.ref.z - myCamera.eye.z)*v[2] > 0;
+}
+
+void Vehicle::draw_face(int i, int f) {
+	glColor3f(r, g, b);
 	glBegin(GL_POLYGON);
 		glVertex3fv(vertex[face[i][0]]);	// first coord
 		glVertex3fv(vertex[face[i][1]]);	// second coord
 		glVertex3fv(vertex[face[i][2]]);	// third coord
 		glVertex3fv(vertex[face[i][3]]);	// fourth coord
 	glEnd();
+
+	if(f){
+		glColor3f(1, 1, 1);
+		glBegin(GL_LINE_LOOP);
+			glVertex3fv(vertex[face[i][0]]);	// first coord
+			glVertex3fv(vertex[face[i][1]]);	// second coord
+			glVertex3fv(vertex[face[i][2]]);	// third coord
+			glVertex3fv(vertex[face[i][3]]);	// fourth coord
+		glEnd();
+	}
+
 }
 
 void Vehicle::drawMC() {
-	glColor3f(r, g, b);
 
 	for (int i = 0; i < 6; i++) {
-		draw_face(i);
+		if(!isBackface(i)){
+			//if(!(vertex[face[i][0]][2] == 3) && !(vertex[face[i][1]][2] == 3) && !(vertex[face[i][2]][2] == 3) && !(vertex[face[i][3]][2] == 3))
+			if(i == 0)
+				draw_face(i, 1);
+			else
+				draw_face(i, 0);
+		}
 	}
 }
 
