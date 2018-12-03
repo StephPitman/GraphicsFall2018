@@ -47,15 +47,8 @@ void display(){
 
 	myWorld.drawWorld();
 
-	/*rx = p->getMC().mat[0][1];
-	ry = p->getMC().mat[1][1];
-	rz = p->getMC().mat[2][1];
-	p->rotateMC(rx, ry, rz, 100 * 0.5);
-	p->draw();*/
-	//std::cout << "HERE\n";
 	glFlush();
 	glutSwapBuffers();
-	//getchar();
 }
 
 int main(int argc, char** argv) {
@@ -70,18 +63,16 @@ int main(int argc, char** argv) {
 	myBoard = new Board();
 	myWorld.insert(myBoard);
 
-	/*Shape *ptrBoard = NULL;
-	ptrBoard = &myBoard;
-	GLfloat rx,ry,rz;
-	rx = ptrBoard->getMC().mat[0][1];
-	ry = ptrBoard->getMC().mat[1][1];
-	rz = ptrBoard->getMC().mat[2][1];
-	ptrBoard->rotateMC(rx, ry, rz, 53 * 0.5);
+	/*GLfloat rx,ry,rz;
+	rx = myBoard->getMC().mat[0][1];
+	ry = myBoard->getMC().mat[1][1];
+	rz = myBoard->getMC().mat[2][1];
+	myCamera.rotate(rx, ry, rz, 53 * 0.5);
 
-	rx = ptrBoard->getMC().mat[0][0];
-	ry = ptrBoard->getMC().mat[1][0];
-	rz = ptrBoard->getMC().mat[2][0];
-	ptrBoard->rotateMC(rx, ry, rz, 130 * 0.5);*/
+	rx = myBoard->getMC().mat[0][0];
+	ry = myBoard->getMC().mat[1][0];
+	rz = myBoard->getMC().mat[2][0];
+	myCamera.rotate(rx, ry, rz, 130 * 0.5);*/
 
 	glutDisplayFunc(display);
 	/*glutMotionFunc(mouseMotion);

@@ -164,11 +164,11 @@ void Board::setLevel(GLint mat[6][6]) {
 	for (i = 1; i < 7; i++) {
 		for (j = 1; j < 7; j++) {
 			id = matrix[i][j];
-			printf("[%d][%d] = %d\n", i,j,id);
+			//printf("[%d][%d] = %d\n", i,j,id);
 			if (id > 1 && !loaded[id - 2]) {
 				printf("Drawing %d\n", myVehicles[id-2]->getID());
 				myVehicles[id - 2]->draw();
-				myVehicles[id - 2]->translate(i - 4, 0, j - 4);
+				myVehicles[id - 2]->translate(j - 4, 0, i - 4);
 				loaded[id - 2] = true;
 				myWorld.insert(myVehicles[id-2]);
 			}
