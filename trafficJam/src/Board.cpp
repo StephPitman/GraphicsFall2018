@@ -212,11 +212,11 @@ void Board::getSides(){
 				found = true;
 				topX = j;
 				topY = i;
-				if(myVehicles[selected - 1]->getDir()){
+				if(myVehicles[selected - 1]->getDir()){ // if vertical
 					bottomX = j;
 					bottomY = i + myVehicles[selected - 1]->getLength() - 1;
 				}
-				else{
+				else{ // if horizontal
 					bottomX = j + myVehicles[selected - 1]->getLength() - 1;
 					bottomY = i;
 				}
