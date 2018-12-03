@@ -61,7 +61,7 @@ void levelSelect(GLint option) {
 		myVehicles[5] = new Vehicle(2, 7, 1);
 		myVehicles[6] = new Vehicle(2, 8, 0);
 		myVehicles[7] = new Vehicle(3, 9, 0);
-		numVehicles = 8;
+
 		//GLint lvl[2][3] = {{4,5,6},{3,6,7}};
 		//myLevel = new int[6][6];
 		//This is temporary fix. If we find time later on to do this better we will change it
@@ -90,6 +90,7 @@ void levelSelect(GLint option) {
 		myVehicles[5] = new Vehicle(3, 7, 0);
 		myVehicles[6] = new Vehicle(2, 8, 1);
 		myVehicles[7] = new Vehicle(3, 9, 0);
+
 		lvl[0][0] = 4;lvl[0][1] = 3;lvl[0][2] = 3; lvl[0][3] = 5;lvl[0][4] = 0;lvl[0][5] = 0;
 		lvl[1][0] = 4;lvl[1][1] = 0;lvl[1][2] = 0; lvl[1][3] = 5;lvl[1][4] = 0;lvl[1][5] = 0;
 		lvl[2][0] = 4;lvl[2][1] = 2;lvl[2][2] = 2; lvl[2][3] = 5;lvl[2][4] = 0;lvl[2][5] = 0;
@@ -117,6 +118,7 @@ void levelSelect(GLint option) {
 		myVehicles[4] = new Vehicle(3,6,1);
 		myVehicles[5] = new Vehicle(3,7,0);
 		myVehicles[6] = new Vehicle(3,8,0);
+
 		//lvl[][0] = ;lvl[][1] = ;lvl[][2] = ;lvl[][3] = ;lvl[][4] = ;lvl[][5] = ;
 		lvl[0][0] = 3;lvl[0][1] = 3;lvl[0][2] = 4;lvl[0][3] = 6;lvl[0][4] = 0;lvl[0][5] = 0;
 		lvl[1][0] = 5;lvl[1][1] = 0;lvl[1][2] = 4;lvl[1][3] = 6;lvl[1][4] = 0;lvl[1][5] = 0;
@@ -136,7 +138,7 @@ void levelSelect(GLint option) {
 		myBoard->setLevel(lvl);
 		break;
 	case 4:
-		numVehicles = 8;
+		numVehicles = 13;
 		myVehicles[0] = new Vehicle(2, 2, 1);
 		myVehicles[1] = new Vehicle(2, 3, 1);
 		myVehicles[2] = new Vehicle(2, 4, 1);
@@ -170,7 +172,10 @@ void levelSelect(GLint option) {
 	glutPostRedisplay();
 }
 void colorSelect(GLint option){
-	selected = option;
+	if(!loaded[option - 1])
+		selected = 1;
+	else
+		selected = option;
 	movingDir = myVehicles[selected - 1]->getDir();
 	glutPostRedisplay();
 }

@@ -118,6 +118,10 @@ int main(int argc, char** argv) {
 	myBoard = new Board(); // initialize board
 	myWorld.insert(myBoard, 0); // initialize world
 
+	for(int i = 0; i < 13; i++){
+		loaded[i] = false;
+	}
+
 	glutDisplayFunc(display);
 	glutMotionFunc(mouseMotion);
 	glutMouseFunc(mouseAction);
