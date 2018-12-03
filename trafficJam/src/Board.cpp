@@ -223,7 +223,7 @@ void Board::setLevel(GLint mat[6][6]) {
 				myVehicles[id - 2]->draw();
 				myVehicles[id - 2]->translate(j - 4, 0, i - 4);
 				loaded[id - 2] = true;
-				myWorld.insert(myVehicles[id-2]);
+				myWorld.insert(myVehicles[id-2], id - 1);
 			}
 		}
 	}
@@ -251,7 +251,6 @@ void Board::drawFace(GLint f, GLint l) {
 		glVertex3fv(vertex[face[f][3]]);
 		glEnd();
 	}
-
 }
 
 void Board::draw() {

@@ -119,6 +119,10 @@ GLint Vehicle::getID(){
 	return id;
 }
 
+GLint Vehicle::getDir(){
+	return direction;
+}
+
 bool Vehicle::isBackface(int faceindex) {
 	GLfloat v[4];
     v[0] = cube_face_norm_mc[faceindex][0];

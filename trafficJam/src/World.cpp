@@ -11,9 +11,9 @@ World::~World(){
 		delete list[i];
 }
 
-void World::insert(Shape *v){
+void World::insert(Shape *v, int i){
 	if(counter < 14){
-		list[counter] = v;
+		list[i] = v;
 		counter++;
 	}
 }

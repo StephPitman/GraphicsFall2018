@@ -12,7 +12,7 @@ protected:
 	GLint face[6][4];		//[face][vertex index]
 	GLfloat cube_face_norm_mc[6][3];  // normal for each face in MC
 	GLfloat r, g, b;
-	GLint direction;	// Horizontal = 0, Vertical = 0
+	GLint direction;	// Horizontal = 0, Vertical = 1
 	GLint id;
 
 public:
@@ -20,6 +20,7 @@ public:
 	Vehicle() = delete;
 	~Vehicle();
 	GLint getID();
+	GLint getDir();
 	bool isBackface(int faceindex);
 	void draw();
 	void drawMC();

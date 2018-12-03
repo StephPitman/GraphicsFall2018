@@ -11,6 +11,8 @@ extern Board *myBoard;
 extern Vehicle* myVehicles[13];
 extern GLint numVehicles;
 extern bool loaded[13];
+extern GLint selected;
+extern GLint movingDir;
 
 void menu() {
 	GLint levelMenu = glutCreateMenu(levelSelect);
@@ -168,7 +170,9 @@ void levelSelect(GLint option) {
 	glutPostRedisplay();
 }
 void colorSelect(GLint option){
-
+	selected = option;
+	movingDir = myVehicles[selected - 1]->getDir();
+	glutPostRedisplay();
 }
 void mainMenu(GLint option) {
 	switch (option) {
