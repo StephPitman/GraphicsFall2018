@@ -23,7 +23,10 @@ protected:
 public:
 	Board();
 	~Board();
+	int getCell(int i, int j); // Check if a cell is full (collision detection)
+	void getSides(); // Finds top and bottom coordinates of selected vehicle
 	bool isBackface(int faceindex);
+	void update(GLfloat t); // Update the board with each move
 	void setLevel(GLint mat[6][6]);
 	void drawFace(GLint f, GLint l); // l is to draw an outline
 	void draw();

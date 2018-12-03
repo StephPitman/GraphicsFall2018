@@ -8,8 +8,10 @@
 #include "Board.hpp"
 
 extern Vehicle* myVehicles[13];
-extern GLint numVehicles;
 extern bool loaded[13];
+
+extern GLint selected;
+extern GLint topX, topY, bottomX, bottomY;
 
 extern World myWorld;
 extern Camera myCamera;
@@ -194,6 +196,37 @@ Board::~Board() {
 
 }
 
+int Board::getCell(int i, int j){
+	return matrix[i][j];
+}
+
+void Board::getSides(){
+	int i, j;
+	bool found = false;
+
+	i = 0;
+	while(!found && i < 8){
+		j = 0;
+		while(!found && j < 8){
+			if(matrix[i][j] == selected + 1){
+				found = true;
+				topX = j;
+				topY = i;
+				if(myVehicles[selected - 1]->getDir()){
+					bottomX = j;
+					bottomY = i + myVehicles[selected - 1]->getLength() - 1;
+				}
+				else{
+					bottomX = j + myVehicles[selected - 1]->getLength() - 1;
+					bottomY = i;
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 bool Board::isBackface(int faceindex) {
 	GLfloat v[4];
     v[0] = cube_face_norm_mc[faceindex][0];
@@ -203,6 +236,43 @@ bool Board::isBackface(int faceindex) {
     this->mc.multiplyVector(v);
 
     return (myCamera.ref.x-myCamera.eye.x)*v[0] + (myCamera.ref.y - myCamera.eye.y)*v[1] + (myCamera.ref.z - myCamera.eye.z)*v[2] > 0;
+}
+
+void Board::update(GLfloat t){
+	int i, j;
+	bool found = false;
+
+	i = 0;
+	while(!found && i < 8){
+		j = 0;
+		while(!found && j < 8){
+			if(matrix[i][j] == selected + 1){
+				found = true;
+				if(myVehicles[selected - 1]->getDir()){ // if vertical
+					if(t == 1){ // if moving up
+						matrix[topY - 1][topX] = selected + 1;
+						matrix[bottomY][bottomX] = 0;
+					}
+					else{	// if moving down
+						matrix[topY][topX] = 0;
+						matrix[bottomY + 1][bottomX] = selected + 1;
+					}
+				}
+				else{ // if horizontal
+					if(t == 1){ // if moving right
+						matrix[topY][topX] = 0;
+						matrix[bottomY][bottomX + 1] = selected + 1;
+					}
+					else{	// if moving left
+						matrix[topY][topX - 1] = selected + 1;
+						matrix[bottomY][bottomX] = 0;
+					}
+				}
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 void Board::setLevel(GLint mat[6][6]) {

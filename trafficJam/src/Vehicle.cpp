@@ -113,6 +113,7 @@ Vehicle::Vehicle(GLint size, GLint col, GLint dir) {
 	}
 	id = col;
 	direction = dir;
+	length = size;
 }
 
 GLint Vehicle::getID(){
@@ -121,6 +122,10 @@ GLint Vehicle::getID(){
 
 GLint Vehicle::getDir(){
 	return direction;
+}
+
+GLint Vehicle::getLength(){
+	return length;
 }
 
 bool Vehicle::isBackface(int faceindex) {

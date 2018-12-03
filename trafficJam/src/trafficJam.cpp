@@ -27,9 +27,10 @@ GLint numVehicles = 0;
 GLint numMoves;
 bool loaded[13];
 
-GLint selected;	// Selected vehicle (from color menu)
+GLint selected = 1;	// Selected vehicle (from color menu) -- Default = Red Car
 GLint moving = 0;
 GLint movingDir = 0;
+GLint topX, topY, bottomX, bottomY; // Top and bottom (left/right if dir == 0) coordinates of selected vehicle
 
 World myWorld;
 Camera myCamera;
@@ -70,23 +71,32 @@ void mouseMotion(GLint x, GLint y) {
 	GLfloat rx, ry, rz, theta;
 	Shape *sshapep = NULL;
 	sshapep = myWorld.list[selected];
+	myBoard->getSides();
 
 	if (moving) {
 
 		if (movingDir == 0) {	// Translate x
 			theta = (xbegin - x > 0) ? 1 : -1;
-			rx = theta;
-			ry = 0;
-			rz = 0;
-			sshapep->translate(rx, ry, rz);
+			if((theta == 1 && (myBoard->getCell(bottomY, bottomX + 1) == 0))
+					|| (theta == -1 && (myBoard->getCell(topY, topX - 1) == 0))){
+				rx = theta;
+				ry = 0;
+				rz = 0;
+				sshapep->translate(rx, ry, rz);
+				myBoard->update(theta);
+			}
 		}
 
 		else {	// Translate Z
 			theta = (xbegin - x > 0) ? 1 : -1;
-			rx = 0;
-			ry = 0;
-			rz = theta;
-			sshapep->translate(rx, ry, rz);
+			if((theta == 1 && (myBoard->getCell(topY - 1, topX) == 0))
+					|| (theta == -1 && (myBoard->getCell(bottomY + 1, bottomX) == 0))){
+				rx = 0;
+				ry = 0;
+				rz = theta;
+				sshapep->translate(rx, ry, rz);
+				myBoard->update(theta);
+			}
 		}
 
 		sshapep->getMC().normalize();

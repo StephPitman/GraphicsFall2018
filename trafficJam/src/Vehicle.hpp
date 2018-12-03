@@ -14,6 +14,7 @@ protected:
 	GLfloat r, g, b;
 	GLint direction;	// Horizontal = 0, Vertical = 1
 	GLint id;
+	GLint length;
 
 public:
 	Vehicle(GLint size, GLint id, GLint dir);
@@ -21,6 +22,7 @@ public:
 	~Vehicle();
 	GLint getID();
 	GLint getDir();
+	GLint getLength();
 	bool isBackface(int faceindex);
 	void draw();
 	void drawMC();
