@@ -117,6 +117,7 @@ void levelSelect(GLint option) {
 		 */
 		myBoard.setLevel(lvl);
 	};
+	printf("here");
 	glutPostRedisplay();
 }
 void mainMenu(GLint option) {

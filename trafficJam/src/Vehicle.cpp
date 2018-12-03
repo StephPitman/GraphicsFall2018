@@ -111,9 +111,6 @@ GLint Vehicle::getID(){
 }
 
 void Vehicle::draw_face(int i) {
-
-	glColor3f(r, g, b);
-
 	glBegin(GL_POLYGON);
 		glVertex3fv(vertex[face[i][0]]);	// first coord
 		glVertex3fv(vertex[face[i][1]]);	// second coord
