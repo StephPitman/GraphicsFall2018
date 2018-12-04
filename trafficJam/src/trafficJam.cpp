@@ -76,7 +76,7 @@ void display() {
 		drawWords(-1,5,-1,t);
 		glFlush();
 			glutSwapBuffers();
-		Sleep(1000);
+		Sleep(3000);
 		levelSelect(0);
 		myBoard->setComplete(false);
 		numMoves = 0;
