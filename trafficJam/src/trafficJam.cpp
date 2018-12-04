@@ -67,7 +67,7 @@ void display() {
 		myWorld.drawWorld();
 		char move[50];
 		sprintf(move, "MOVES: %d", numMoves);
-		drawWords(3,3,-1)
+		drawWords(-3,-25,-1, move);
 	}
 	//else
 	else{
