@@ -116,18 +116,22 @@ Vehicle::Vehicle(GLint size, GLint col, GLint dir) {
 	length = size;
 }
 
+//Gets the id of the vehicle
 GLint Vehicle::getID(){
 	return id;
 }
 
+//Gets the direction of the vehicle
 GLint Vehicle::getDir(){
 	return direction;
 }
 
+//Gets the length of the vehicle
 GLint Vehicle::getLength(){
 	return length;
 }
 
+//Checks if a given face is a back face
 bool Vehicle::isBackface(int faceindex) {
 	GLfloat v[4];
     v[0] = cube_face_norm_mc[faceindex][0];
@@ -139,6 +143,7 @@ bool Vehicle::isBackface(int faceindex) {
     return (myCamera.ref.x-myCamera.eye.x)*v[0] + (myCamera.ref.y - myCamera.eye.y)*v[1] + (myCamera.ref.z - myCamera.eye.z)*v[2] > 0;
 }
 
+//Draws a face of the vehicle
 void Vehicle::draw_face(int i, int f) {
 	glColor3f(r, g, b);
 	glBegin(GL_POLYGON);
@@ -160,6 +165,7 @@ void Vehicle::draw_face(int i, int f) {
 
 }
 
+
 void Vehicle::drawMC() {
 
 	for (int i = 0; i < 6; i++) {
@@ -173,6 +179,7 @@ void Vehicle::drawMC() {
 	}
 }
 
+//Draws the vehicle
 void Vehicle::draw() {
 	glPushMatrix();
 	this->ctmMultiply();

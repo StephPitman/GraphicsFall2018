@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "Shape.hpp"
 #include "Camera.hpp"
+#include "Menu.hpp"
 
 class Vehicle: public Shape {
 protected:

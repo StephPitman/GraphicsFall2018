@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <gl/glut.h>
+#include<windows.h>
 
 #include "Board.hpp"
 #include "World.hpp"
@@ -24,7 +26,7 @@ GLint xbegin = 0;
 Board *myBoard;	// Game board
 Vehicle* myVehicles[13];
 GLint numVehicles = 0;
-GLint numMoves;
+GLint numMoves=0;
 bool loaded[13];
 
 GLint selected = 1;	// Selected vehicle (from color menu) -- Default = Red Car
@@ -46,15 +48,45 @@ void init() {
 
 }
 
+void drawWords(GLfloat x, GLfloat y, GLfloat z, char* s){
+	glColor3f( 1,1,1);
+	glRasterPos3f(x,y,z);
+	int len = (int) strlen(s);
+	for (int i = 0; i < len; i++){
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,s[i]);
+	}
+
+}
+
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	myCamera.setProjectionMatrix();
-
-	myWorld.drawWorld();
+	//if board is not done (red car is in exit)
+	if(myBoard->getComplete() == false){
+		//print world
+		myWorld.drawWorld();
+	}
+	//else
+	else{
+		//display WINNER and the number of moves
+		char *s = "WINNER!";
+		drawWords(-0.75,8,-1,s);
+		char t[50];
+		sprintf(t, "MOVES: %d", numMoves);
+		drawWords(-1,5,-1,t);
+		glFlush();
+			glutSwapBuffers();
+		Sleep(1000);
+		levelSelect(0);
+		myBoard->setComplete(false);
+		numMoves = 0;
+	}
 
 	glFlush();
 	glutSwapBuffers();
 }
+
+
 
 void mouseAction(int button, int action, int x, int y) {
 	if (button == GLUT_LEFT_BUTTON) {
@@ -84,6 +116,7 @@ void mouseMotion(GLint x, GLint y) {
 				rz = 0;
 				sshapep->translate(rx, ry, rz);
 				myBoard->update(theta);
+				numMoves++;
 			}
 		}
 
@@ -96,11 +129,11 @@ void mouseMotion(GLint x, GLint y) {
 				rz = -theta;
 				sshapep->translate(rx, ry, rz);
 				myBoard->update(theta);
+				numMoves++;
 			}
 		}
 
 		sshapep->getMC().normalize();
-
 		glutPostRedisplay();
 	}
 
@@ -109,7 +142,6 @@ void mouseMotion(GLint x, GLint y) {
 int main(int argc, char** argv) {
 	setvbuf(stdout, NULL, _IONBF, 0);  //used for prompt Eclipse console output
 	setvbuf(stderr, NULL, _IONBF, 0);
-	//ShowWindow(FindWindowA("ConsoleWindowClass", NULL), false);  //used to hide console
 
 	glutInit(&argc, argv);
 	menu();	// initialize menu

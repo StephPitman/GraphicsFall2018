@@ -17,6 +17,7 @@ extern World myWorld;
 extern Camera myCamera;
 
 Board::Board() {
+	complete = false;
 	int i, j;
 	for (i = 0; i < 8; i++) {
 		for (j = 0; j < 8; j++) {
@@ -196,10 +197,12 @@ Board::~Board() {
 
 }
 
+//Gets the value at cell [i,j]
 int Board::getCell(int i, int j){
 	return matrix[i][j];
 }
 
+//gets the
 void Board::getSides(){
 	int i, j;
 	bool found = false;
@@ -227,6 +230,17 @@ void Board::getSides(){
 	}
 }
 
+//Sets the board to either complete or not complete
+void Board::setComplete(GLboolean b){
+	complete = b;
+}
+
+//Checks if board is complete
+GLboolean Board::getComplete(){
+	return complete;
+}
+
+//checks if a given face is a backface
 bool Board::isBackface(int faceindex) {
 	GLfloat v[4];
     v[0] = cube_face_norm_mc[faceindex][0];
@@ -238,6 +252,7 @@ bool Board::isBackface(int faceindex) {
     return (myCamera.ref.x-myCamera.eye.x)*v[0] + (myCamera.ref.y - myCamera.eye.y)*v[1] + (myCamera.ref.z - myCamera.eye.z)*v[2] > 0;
 }
 
+//Updates the board's matrix after a move
 void Board::update(GLfloat t){
 	int i, j;
 	bool found = false;
@@ -273,9 +288,14 @@ void Board::update(GLfloat t){
 		}
 		i++;
 	}
+	if(matrix[3][7] == 2){
+		complete = true;
+	}
 }
 
+//Sets the board to a given level
 void Board::setLevel(GLint mat[6][6]) {
+	complete = false;
 	int id, i, j;
 
 	for (int i = 1; i < 7; i++) {
@@ -289,7 +309,7 @@ void Board::setLevel(GLint mat[6][6]) {
 			id = matrix[i][j];
 			//printf("[%d][%d] = %d\n", i,j,id);
 			if (id > 1 && !loaded[id - 2]) {
-				printf("Drawing %d\n", myVehicles[id-2]->getID());
+				//printf("Drawing %d\n", myVehicles[id-2]->getID());
 				myVehicles[id - 2]->draw();
 				myVehicles[id - 2]->translate(j - 4, 0, i - 4);
 				loaded[id - 2] = true;
@@ -299,6 +319,7 @@ void Board::setLevel(GLint mat[6][6]) {
 	}
 }
 
+//Draws a face of the board
 void Board::drawFace(GLint f, GLint l) {
 	if (f < 6) {
 		glColor3f(0.5, 0.5, 0.5);
@@ -323,6 +344,7 @@ void Board::drawFace(GLint f, GLint l) {
 	}
 }
 
+//Draws the board
 void Board::draw() {
 	glPushMatrix();
 	this->ctmMultiply();
