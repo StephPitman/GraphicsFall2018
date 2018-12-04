@@ -65,15 +65,18 @@ void display() {
 	if(myBoard->getComplete() == false){
 		//print world
 		myWorld.drawWorld();
+		char move[50];
+		sprintf(move, "MOVES: %d", numMoves);
+		drawWords(3,3,-1)
 	}
 	//else
 	else{
 		//display WINNER and the number of moves
-		char *s = "WINNER!";
-		drawWords(-0.75,8,-1,s);
-		char t[50];
-		sprintf(t, "MOVES: %d", numMoves);
-		drawWords(-1,5,-1,t);
+		char *winString = "WINNER!";
+		drawWords(-0.75,8,-1,winString);
+		char moves[50];
+		sprintf(moves, "MOVES: %d", numMoves);
+		drawWords(-1,5,-1,moves);
 		glFlush();
 			glutSwapBuffers();
 		Sleep(3000);
